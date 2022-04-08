@@ -3,7 +3,7 @@
 //  配列の場合、内容が変わっても、配列が変わらないので const を使うのはおすすめです。
 
 function DeleteFromArray(Array1,item){
-  const Array2 = []
+  let Array2 = []
   for (let i=0; i < Array1.length; i++){
     if(Array1[i] !== item){
       Array2.push(Array1[i])
@@ -38,10 +38,10 @@ function MaxArray(Array1){
 
 
 function IsEFone(AliceUtility,BobUtility,AliceAllocation,BobAllocation){
-  const AAU=[];
-  const BAU=[];
-  const ABU=[];
-  const BBU=[];
+  let AAU=[];
+  let BAU=[];
+  let ABU=[];
+  let BBU=[];
   for (let i=0; i < AliceAllocation.length; i++){
     AAU.push(AliceUtility[AliceAllocation[i]]);
     BAU.push(BobUtility[AliceAllocation[i]]);
