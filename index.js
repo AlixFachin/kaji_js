@@ -65,15 +65,15 @@ function IsEFone(AliceUtility,BobUtility,AliceAllocation,BobAllocation){
 
 
 function AdjustedWinner(AliceUtility,BobUtility){
-  const AliceAllocation = Array.from(Array(AliceUtility.length), (v, k) => k);
-  const BobAllocation = [];
-  const alist = [];
+  let AliceAllocation = Array.from(Array(AliceUtility.length), (v, k) => k);
+  let BobAllocation = [];
+  let alist = [];
   for (let i=0; i < AliceAllocation.length; i++){
     //console.log(isString(key));
     alist.push([AliceAllocation[i], AliceUtility[AliceAllocation[i]]/BobUtility[AliceAllocation[i]]]);
   }
   //  ${}を使うと便利です。backquoteが必須です
-  console.log(`AliceAllocation: ${AliceAllocation}, BobAllocation: ${BobAllocation}`);
+  console.log(`AliceUtility: ${AliceUtility}, BobUtility: ${BobUtility}`);
   // sortにコールバックを使うと、1や-1と比較するではなく、>0 か <0 だけ比較するから、b[1]-a[1] が使えます。 
   // https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/sort 
   alist.sort((a, b) => (b[1]-a[1]));
@@ -85,8 +85,7 @@ function AdjustedWinner(AliceUtility,BobUtility){
     // ここに (t < alist.length) のテストが必要でしょうか？
     AliceAllocation = DeleteFromArray(AliceAllocation, alist[t][0]);
     BobAllocation.push(alist[t][0]);
-    console.log("AliceAllocation,BobAllocation",[AliceAllocation,BobAllocation]);
-    console.log("AliceUtility,BobUtility",[AliceUtility,BobUtility]);
+    console.log(`AliceAllocation: ${AliceAllocation}, BobAllocation: ${BobAllocation}`);
     t++;
   }
   return [AliceAllocation, BobAllocation];
@@ -95,7 +94,9 @@ function AdjustedWinner(AliceUtility,BobUtility){
 
 
 export default function Home() {
-  console.log(AdjustedWinner([1,2,2,1],[1,4,2,3]));
+  const AliceUtility = [1,2,2,1];
+  const BobUtility = [1,4,2,3];
+  console.log(AdjustedWinner(AliceUtility,BobUtility));
   return (
     <>
       <h1>家事分担</h1>
